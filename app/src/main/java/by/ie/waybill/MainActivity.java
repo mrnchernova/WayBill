@@ -95,10 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         /**
-         * Основной блок расчетов
-         *
-         * Закомментирован
-         *
+         Основной блок расчетов
          */
         buttonResult.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,6 +141,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    String formulaCurrentConsumption = "";
+    String formulaTotalDistance = "";
+    String formulaTonKm = "";
+    String formulaConsumptionForFormula = "";
 
     private double getCurrentConsumption() {
         double linearConsumption = Double.parseDouble(etFuelConsumption.getText().toString());
@@ -152,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
         if (checkBoxWinter.isChecked()) winterConsumption = linearConsumption * 10 / 100;
         if (checkBoxLifetime.isChecked()) lifetimeConsumption = linearConsumption * 8 / 100;
         double currentConsumption = linearConsumption + winterConsumption + lifetimeConsumption;
+        formulaCurrentConsumption = "(" + linearConsumption + " + " + winterConsumption + " + " + lifetimeConsumption + ")";
         return currentConsumption;
     }
 
@@ -195,15 +197,21 @@ public class MainActivity extends AppCompatActivity {
             if (totalDistance < distanceWithCargo) {
                 showInfo("Общее расстояние больше, чем расстояние с грузом!");
             } else {
-                double totalDistanceEmptyConsumption = totalDistance * currentConsumption / 100; //всего проехал и потралит литров
+                double totalDistanceEmptyConsumption = totalDistance * currentConsumption / 100; //всего проехал и потратил литров
                 double totalDistanceWithCargoConsumption = 1.3 * cargoWeight * distanceWithCargo / 100;
 
                 double fuelPrice = Double.parseDouble(etFuelPrice.getText().toString()) * (totalDistanceEmptyConsumption + totalDistanceWithCargoConsumption);
 
                 tvResult.setText(String.format("%.2f", totalDistanceEmptyConsumption + totalDistanceWithCargoConsumption));
+
+                formulaConsumptionForFormula = tvResult.getText().toString();
+                formulaTotalDistance = " * " + totalDistance + " / 100 + ";
+                formulaTonKm = "(" + distanceWithCargo + " * " + cargoWeight + ") / 100 * 1.3";
+
                 return fuelPrice;
             }
         }
+
         double fuelPrice = 0;
         return fuelPrice;
 
@@ -241,7 +249,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         Intent intent = new Intent(this, CalculationActivity.class);
-        intent.putExtra("FuelPrice", etFuelPrice);
+//        intent.putExtra("FuelPrice", etFuelPrice);
+
+        String formula = formulaCurrentConsumption + formulaTotalDistance + formulaTonKm + " = " + formulaConsumptionForFormula; //складывается в одну большую формулу
+        intent.putExtra("formula", formula);
         startActivity(intent);
 
     }

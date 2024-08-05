@@ -20,14 +20,17 @@ public class CalculationActivity extends AppCompatActivity {
          tvPrint.setText("Hello Kitty!");
          */
         TextView tvPrint = new TextView(this);
-        tvPrint.setTextSize(26);
-        tvPrint.setPadding(16, 16, 16, 16);
+        tvPrint.setTextSize(20);
+//        tvPrint.setPadding(16, 16, 16, 16);
 
         Bundle arguments = getIntent().getExtras();
 
         if (arguments != null) {
-            String fuelPrice = arguments.get("FuelPrice").toString();
-            tvPrint.setText("FuelPrice: " + fuelPrice);
+//            String fuelPrice = arguments.get("FuelPrice").toString();
+//            tvPrint.setText("FuelPrice: " + fuelPrice);
+
+            String formula = arguments.get("formula").toString();
+            tvPrint.setText(formula);
         }
         setContentView(tvPrint);
 

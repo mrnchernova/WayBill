@@ -11,22 +11,50 @@
       android:id="@+id/button"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginBottom="50dp"
+      android:layout_marginBottom="100dp"
       android:onClick="goBack"
       android:text="Назад"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.527"
       app:layout_constraintStart_toStartOf="parent" />
 
   <TextView
       android:id="@+id/tvPrint"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="100dp"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="300dp"
+      android:layout_marginEnd="16dp"
       android:text="..."
-      android:textSize="40sp"
+      android:textSize="20sp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.498"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+  <TextView
+      android:id="@+id/titleFormula"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="50dp"
+      android:layout_marginEnd="16dp"
+      android:text="Расход топлива по формуле"
+      android:textSize="24sp"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
+
+  <TextView
+      android:id="@+id/stringFormula"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="32dp"
+      android:layout_marginEnd="16dp"
+      android:text="(тек. расход + зима + эксплуатация) * общ. расстояние / 100 + (расстояние с грузом * вес груза) /100 * 1,3"
+      android:textSize="20sp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/titleFormula" />
 </androidx.constraintlayout.widget.ConstraintLayout>

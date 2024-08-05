@@ -84,6 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
+                android:minHeight="48dp"
                 android:text="@string/etFuelPrice" />
 
             <TextView
@@ -269,7 +270,7 @@
                 android:layout_height="wrap_content"
                 android:text="л." />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/imgBtnEdit1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -301,7 +302,7 @@
                 android:layout_height="wrap_content"
                 android:text="р." />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/imgBtnEdit2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -333,7 +334,7 @@
                 android:layout_height="wrap_content"
                 android:text="р." />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/imgBtnEdit3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -356,6 +357,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
+                android:minHeight="48dp"
                 android:text="0" />
 
             <Button

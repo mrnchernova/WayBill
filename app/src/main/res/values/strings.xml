@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Расчет топлива</string>
+    <string name="textViewRashod">Расход</string>
+    <string name="etRashod">24.0</string>
+
+    <string name="textViewVesGruza">Вес груза</string>
+    <string name="etVesGruza"></string>
+
+    <string name="textViewTekRashod">Текущий расход</string>
+    <string name="tvTekRashodResult">...</string>
+
+    <string name="textViewRasstoyanieVse">Расстояние общее</string>
+    <string name="etRasstoyanieVse"></string>
+
+    <string name="textViewRasstoyanieVes">Расстояние с грузом</string>
+    <string name="etRasstoyanieVes"></string>
+
+    <string name="buttonResult">Рассчитать</string>
+    <string name="tvResult">...</string>
+
+    <string name="tvMoney">Потрачено денег</string>
+    <string name="tvMoneyRes">...</string>
+
+<!--    <string name="textViewRashod">Расход</string>-->
+    <string name="etFuelPrice">2.36</string>
+
+</resources>

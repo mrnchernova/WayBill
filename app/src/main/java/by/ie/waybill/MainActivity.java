@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText etFuelConsumption, etFuelPrice;
     CheckBox checkBoxWinter, checkBoxLifetime;
-    EditText etVesGruza, etRasstoyanieVse, etRasstoyanieVes, etOfferedPrice;
+    EditText etCargoWeight, etTotalDistance, etDistanceWithCargo, etOfferedPrice;
     Button buttonResult, btnProfit;
     TextView tvCurrentFuelConsumption, tvResult, tvMoneyRes, tvMoneyForKm, tvProfit;
     ImageButton imgBtnSave;
@@ -41,19 +41,19 @@ public class MainActivity extends AppCompatActivity {
         settings = getSharedPreferences(FILE_NAME, MODE_PRIVATE);
 
 
-        etFuelConsumption = findViewById(R.id.etCurrentFuelConsumption);
+        etFuelConsumption = findViewById(R.id.etFuelConsumption);
         checkBoxWinter = findViewById(R.id.checkBoxWinter);
         checkBoxLifetime = findViewById(R.id.checkBoxLifetime);
-        etVesGruza = findViewById(R.id.etVesGruza);
-        etRasstoyanieVse = findViewById(R.id.etRasstoyanieVse);
-        etRasstoyanieVes = findViewById(R.id.etRasstoyanieVes);
+        etCargoWeight = findViewById(R.id.etCargoWeight);
+        etTotalDistance = findViewById(R.id.etTotalDistance);
+        etDistanceWithCargo = findViewById(R.id.etDistanceWithCargo);
         buttonResult = findViewById(R.id.buttonResult);
         tvCurrentFuelConsumption = findViewById(R.id.tvCurrentFuelConsumption);
         tvResult = findViewById(R.id.tvResult);
 
-        btnProfit = findViewById(R.id.btnProfit);                   //!!!
-        etOfferedPrice = findViewById(R.id.etOfferedPrice);         //!!!
-        tvProfit = findViewById(R.id.tvProfit);                     //!!!
+        btnProfit = findViewById(R.id.btnProfit);
+        etOfferedPrice = findViewById(R.id.etOfferedPrice);
+        tvProfit = findViewById(R.id.tvProfit);
 
         etFuelPrice = findViewById(R.id.etFuelPrice);
         tvMoneyRes = findViewById(R.id.tvMoneyRes);
@@ -127,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
                 tvCurrentFuelConsumption.setText(String.format("%.2f", currentConsumption));
 
                 /* Part II  + Profit*/
-
                 double fuelPrice = getFuelPrice();
                 tvMoneyRes.setText(String.format("%.2f", fuelPrice));
                 getMoneyForKm(fuelPrice);
@@ -156,52 +155,52 @@ public class MainActivity extends AppCompatActivity {
         return currentConsumption;
     }
 
-    private double getVesGruza() {
-        double vesGruza = 0;
-        if (!etVesGruza.getText().toString().isEmpty()) {
-            vesGruza = Double.parseDouble(etVesGruza.getText().toString());
+    private double getCargoWeight() {
+        double cargoWeight = 0;
+        if (!etCargoWeight.getText().toString().isEmpty()) {
+            cargoWeight = Double.parseDouble(etCargoWeight.getText().toString());
         }
-        return vesGruza;
+        return cargoWeight;
     }
 
-    private double getRasstVse() {
-        double rasstVse = 0;
-        if (!etRasstoyanieVse.getText().toString().isEmpty()) {
-            rasstVse = Double.parseDouble(etRasstoyanieVse.getText().toString());
+    private double getTotalDistance() {
+        double totalDistance = 0;
+        if (!etTotalDistance.getText().toString().isEmpty()) {
+            totalDistance = Double.parseDouble(etTotalDistance.getText().toString());
         } else {
-            etRasstoyanieVse.setText("0");
+            etTotalDistance.setText("0");
         }
-        return rasstVse;
+        return totalDistance;
     }
 
-    private double getRasstVes() {
-        double rasstVes = 0;
-        if (!etRasstoyanieVes.getText().toString().isEmpty()) {
-            rasstVes = Double.parseDouble(etRasstoyanieVes.getText().toString());
+    private double getDistanceWithCargo() {
+        double distanceWithCargo = 0;
+        if (!etDistanceWithCargo.getText().toString().isEmpty()) {
+            distanceWithCargo = Double.parseDouble(etDistanceWithCargo.getText().toString());
         }
-        return rasstVes;
+        return distanceWithCargo;
     }
 
 
     private double getFuelPrice() {
 
         double currentConsumption = getCurrentConsumption();
-        double vesGruza = getVesGruza();
-        double rasstVse = getRasstVse();
-        double rasstVes = getRasstVes();
+        double cargoWeight = getCargoWeight();
+        double totalDistance = getTotalDistance();
+        double distanceWithCargo = getDistanceWithCargo();
 
-        if (rasstVse <= 0) {
+        if (totalDistance <= 0) {
             showInfo("Не указано расстояние");
         } else {
-            if (rasstVse < rasstVes) {
+            if (totalDistance < distanceWithCargo) {
                 showInfo("Общее расстояние больше, чем расстояние с грузом!");
             } else {
-                double vsegoPustoy = rasstVse * currentConsumption / 100; //всего проехал и потралит литров
-                double vsegoVes = 1.3 * vesGruza * rasstVes / 100;
+                double totalDistanceEmptyConsumption = totalDistance * currentConsumption / 100; //всего проехал и потралит литров
+                double totalDistanceWithCargoConsumption = 1.3 * cargoWeight * distanceWithCargo / 100;
 
-                double fuelPrice = Double.parseDouble(etFuelPrice.getText().toString()) * (vsegoPustoy + vsegoVes);
+                double fuelPrice = Double.parseDouble(etFuelPrice.getText().toString()) * (totalDistanceEmptyConsumption + totalDistanceWithCargoConsumption);
 
-                tvResult.setText(String.format("%.2f", vsegoPustoy + vsegoVes));
+                tvResult.setText(String.format("%.2f", totalDistanceEmptyConsumption + totalDistanceWithCargoConsumption));
                 return fuelPrice;
             }
         }
@@ -212,8 +211,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void getMoneyForKm(double fuelPrice) {
-        double rasstVse = Double.parseDouble(etRasstoyanieVse.getText().toString());
-        tvMoneyForKm.setText(String.format("%.2f", fuelPrice / rasstVse));
+        double totalDistance = Double.parseDouble(etTotalDistance.getText().toString());
+        tvMoneyForKm.setText(String.format("%.2f", fuelPrice / totalDistance));
     }
 
     private void showInfo(String text) {

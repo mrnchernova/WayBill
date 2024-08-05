@@ -26,15 +26,15 @@
                 android:id="@+id/labelFuelConsumption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/textViewRashod" />
+                android:text="@string/labelFuelConsumption" />
 
             <EditText
-                android:id="@+id/etCurrentFuelConsumption"
+                android:id="@+id/etFuelConsumption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="3"
                 android:inputType="numberDecimal"
-                android:text="@string/etRashod"
+                android:text="@string/etFuelConsumption"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <TextView
@@ -74,7 +74,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/tvFuelPrice"
+                android:id="@+id/labelFuelPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Стоимость ДТ" />
@@ -117,7 +117,7 @@
                 android:id="@+id/tvCurrentFuelConsumption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tvTekRashodResult"
+                android:text="@string/tvCurrentFuelConsumption"
                 android:textColor="#2196F3"
                 android:textSize="20sp" />
 
@@ -146,13 +146,13 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/labelCargoWeight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/textViewVesGruza" />
+                android:text="@string/labelCargoWeight" />
 
             <EditText
-                android:id="@+id/etVesGruza"
+                android:id="@+id/etCargoWeight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
@@ -170,13 +170,13 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textViewRasstoyanieVse"
+                android:id="@+id/labelTotalDistance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/textViewRasstoyanieVse" />
+                android:text="@string/labelTotalDistance" />
 
             <EditText
-                android:id="@+id/etRasstoyanieVse"
+                android:id="@+id/etTotalDistance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="numberSigned"
@@ -194,13 +194,13 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textViewRasstoyanieVes"
+                android:id="@+id/labelDistanceWithCargo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/textViewRasstoyanieVes" />
+                android:text="@string/labelDistanceWithCargo" />
 
             <EditText
-                android:id="@+id/etRasstoyanieVes"
+                android:id="@+id/etDistanceWithCargo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="numberSigned"
@@ -276,6 +276,7 @@
                 android:layout_height="wrap_content"
                 android:onClick="printCalculation"
                 android:src="@android:drawable/ic_menu_edit"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
                 tools:src="@android:drawable/ic_menu_edit" />
         </TableRow>
 
@@ -341,6 +342,7 @@
                 android:layout_height="wrap_content"
                 android:onClick="startCalculationRes"
                 android:src="@android:drawable/ic_menu_edit"
+                tools:ignore="SpeakableTextPresentCheck"
                 tools:src="@android:drawable/ic_menu_edit" />
         </TableRow>
 

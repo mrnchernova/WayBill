@@ -1,19 +1,19 @@
 <resources>
     <string name="app_name">Расчет топлива</string>
-    <string name="textViewRashod">Расход</string>
-    <string name="etRashod">24.0</string>
+    <string name="labelFuelConsumption">Расход</string>
+    <string name="etFuelConsumption">24.0</string>
 
-    <string name="textViewVesGruza">Вес груза</string>
-    <string name="etVesGruza"></string>
+    <string name="labelCargoWeight">Вес груза</string>
+    <string name="etCargoWeight"></string>
 
-    <string name="textViewTekRashod">Текущий расход</string>
-    <string name="tvTekRashodResult">...</string>
+    <string name="labelCurrentFuelConsumption">Текущий расход</string>
+    <string name="tvCurrentFuelConsumption">...</string>
 
-    <string name="textViewRasstoyanieVse">Расстояние общее</string>
-    <string name="etRasstoyanieVse"></string>
+    <string name="labelTotalDistance">Расстояние общее</string>
+    <string name="etTotalDistance">0</string>
 
-    <string name="textViewRasstoyanieVes">Расстояние с грузом</string>
-    <string name="etRasstoyanieVes"></string>
+    <string name="labelDistanceWithCargo">Расстояние с грузом</string>
+    <string name="etDistanceWithCargo"></string>
 
     <string name="buttonResult">Рассчитать</string>
     <string name="tvResult">...</string>

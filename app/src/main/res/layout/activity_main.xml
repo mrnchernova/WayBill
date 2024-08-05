@@ -23,13 +23,13 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textViewRashod"
+                android:id="@+id/labelFuelConsumption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/textViewRashod" />
 
             <EditText
-                android:id="@+id/etRashod"
+                android:id="@+id/etCurrentFuelConsumption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="3"
@@ -51,7 +51,7 @@
             android:layout_height="match_parent">
 
             <CheckBox
-                android:id="@+id/checkBoxZima"
+                android:id="@+id/checkBoxWinter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Зима 10%" />
@@ -62,7 +62,7 @@
             android:layout_height="match_parent">
 
             <CheckBox
-                android:id="@+id/checkBoxSrok"
+                android:id="@+id/checkBoxLifetime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_span="3"
@@ -108,13 +108,13 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textViewTekRashod"
+                android:id="@+id/labelCurrentFuelConsumption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Текущий расход" />
 
             <TextView
-                android:id="@+id/tvTekRashodResult"
+                android:id="@+id/tvCurrentFuelConsumption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tvTekRashodResult"
@@ -274,6 +274,7 @@
                 android:id="@+id/imgBtnEdit1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="printCalculation"
                 android:src="@android:drawable/ic_menu_edit"
                 tools:src="@android:drawable/ic_menu_edit" />
         </TableRow>
@@ -334,10 +335,11 @@
                 android:layout_height="wrap_content"
                 android:text="р." />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/imgBtnEdit3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="startCalculationRes"
                 android:src="@android:drawable/ic_menu_edit"
                 tools:src="@android:drawable/ic_menu_edit" />
         </TableRow>

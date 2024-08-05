@@ -21,7 +21,7 @@
     <string name="tvMoney">Потрачено денег</string>
     <string name="tvMoneyRes">...</string>
 
-<!--    <string name="textViewRashod">Расход</string>-->
+    <!--    <string name="textViewRashod">Расход</string>-->
     <string name="etFuelPrice">2.36</string>
 
 </resources>

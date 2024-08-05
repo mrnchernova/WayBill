@@ -13,6 +13,9 @@
         android:theme="@style/Theme.WayBill"
         tools:targetApi="31">
         <activity
+            android:name=".CalculationActivity"
+            android:exported="false" />
+        <activity
             android:name=".CalculationInfo"
             android:exported="false" />
         <activity

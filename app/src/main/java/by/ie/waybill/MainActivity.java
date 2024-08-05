@@ -2,6 +2,7 @@ package by.ie.waybill;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -24,12 +25,13 @@ public class MainActivity extends AppCompatActivity {
 
     SharedPreferences settings;
 
-    EditText etRashod, etFuelPrice;
-    CheckBox checkBoxZima, checkBoxSrok;
+    EditText etFuelConsumption, etFuelPrice;
+    CheckBox checkBoxWinter, checkBoxLifetime;
     EditText etVesGruza, etRasstoyanieVse, etRasstoyanieVes, etOfferedPrice;
     Button buttonResult, btnProfit;
-    TextView tvTekRashodResult, tvResult, tvMoneyRes, tvMoneyForKm, tvProfit;
+    TextView tvCurrentFuelConsumption, tvResult, tvMoneyRes, tvMoneyForKm, tvProfit;
     ImageButton imgBtnSave;
+    ImageButton imgBtnEdit3;
 
 
     @Override
@@ -39,14 +41,14 @@ public class MainActivity extends AppCompatActivity {
         settings = getSharedPreferences(FILE_NAME, MODE_PRIVATE);
 
 
-        etRashod = findViewById(R.id.etRashod);
-        checkBoxZima = findViewById(R.id.checkBoxZima);
-        checkBoxSrok = findViewById(R.id.checkBoxSrok);
+        etFuelConsumption = findViewById(R.id.etCurrentFuelConsumption);
+        checkBoxWinter = findViewById(R.id.checkBoxWinter);
+        checkBoxLifetime = findViewById(R.id.checkBoxLifetime);
         etVesGruza = findViewById(R.id.etVesGruza);
         etRasstoyanieVse = findViewById(R.id.etRasstoyanieVse);
         etRasstoyanieVes = findViewById(R.id.etRasstoyanieVes);
         buttonResult = findViewById(R.id.buttonResult);
-        tvTekRashodResult = findViewById(R.id.tvTekRashodResult);
+        tvCurrentFuelConsumption = findViewById(R.id.tvCurrentFuelConsumption);
         tvResult = findViewById(R.id.tvResult);
 
         btnProfit = findViewById(R.id.btnProfit);                   //!!!
@@ -58,21 +60,22 @@ public class MainActivity extends AppCompatActivity {
         tvMoneyForKm = findViewById(R.id.tvMoneyForKm);
 
         imgBtnSave = findViewById(R.id.imgBtnSave);
+        imgBtnEdit3 = findViewById(R.id.imgBtnEdit3);
 
 
         if (settings.contains(ZIMA)) {
-            checkBoxZima.setChecked(settings.getBoolean(ZIMA, false));
+            checkBoxWinter.setChecked(settings.getBoolean(ZIMA, false));
         }
         if (settings.contains(SROK)) {
-            checkBoxSrok.setChecked(settings.getBoolean(SROK, false));
+            checkBoxLifetime.setChecked(settings.getBoolean(SROK, false));
         }
 
         if (settings.contains(FUEL_CONSUMPTION)) {
-            etRashod.setText(settings.getString(FUEL_CONSUMPTION, "24.0"));
+            etFuelConsumption.setText(settings.getString(FUEL_CONSUMPTION, "24.0"));
         }
 
         if (settings.contains(PRICE_DT)) {
-            etFuelPrice.setText(settings.getString(PRICE_DT, "2.36"));
+            etFuelPrice.setText(settings.getString(PRICE_DT, "2.44"));
         }
 
 
@@ -81,9 +84,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 settings = getSharedPreferences(FILE_NAME, MODE_PRIVATE);
                 SharedPreferences.Editor editor = settings.edit();
-                editor.putBoolean(ZIMA, checkBoxZima.isChecked());
-                editor.putBoolean(SROK, checkBoxSrok.isChecked());
-                editor.putString(FUEL_CONSUMPTION, etRashod.getText().toString());
+                editor.putBoolean(ZIMA, checkBoxWinter.isChecked());
+                editor.putBoolean(SROK, checkBoxLifetime.isChecked());
+                editor.putString(FUEL_CONSUMPTION, etFuelConsumption.getText().toString());
                 editor.putString(PRICE_DT, etFuelPrice.getText().toString());
                 editor.commit();
                 showSave("Сохранено");
@@ -101,8 +104,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 /* Part I */
-                double tekRashod = getCurrentConsumption(); //текущий расход
-                tvTekRashodResult.setText(String.format("%.2f", tekRashod));
+                double currentConsumption = getCurrentConsumption(); //текущий расход
+                tvCurrentFuelConsumption.setText(String.format("%.2f", currentConsumption));
 
                 /* Part II */
                 double fuelPrice = getFuelPrice();
@@ -120,8 +123,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 /* Part I */
-                double tekRashod = getCurrentConsumption(); //текущий расход
-                tvTekRashodResult.setText(String.format("%.2f", tekRashod));
+                double currentConsumption = getCurrentConsumption(); //текущий расход
+                tvCurrentFuelConsumption.setText(String.format("%.2f", currentConsumption));
 
                 /* Part II  + Profit*/
 
@@ -133,7 +136,6 @@ public class MainActivity extends AppCompatActivity {
                     double offeredPrice = Double.parseDouble(etOfferedPrice.getText().toString());
 
 
-
                     tvProfit.setText(String.format("%.2f", offeredPrice - fuelPrice));
 
                 } else {
@@ -143,14 +145,15 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
     private double getCurrentConsumption() {
-        double linRashod = Double.parseDouble(etRashod.getText().toString());
-        double zimaRashod = 0;
-        double srokRashod = 0;
-        if (checkBoxZima.isChecked()) zimaRashod = linRashod * 10 / 100;
-        if (checkBoxSrok.isChecked()) srokRashod = linRashod * 8 / 100;
-        double tekRashod = linRashod + zimaRashod + srokRashod;
-        return tekRashod;
+        double linearConsumption = Double.parseDouble(etFuelConsumption.getText().toString());
+        double winterConsumption = 0;
+        double lifetimeConsumption = 0;
+        if (checkBoxWinter.isChecked()) winterConsumption = linearConsumption * 10 / 100;
+        if (checkBoxLifetime.isChecked()) lifetimeConsumption = linearConsumption * 8 / 100;
+        double currentConsumption = linearConsumption + winterConsumption + lifetimeConsumption;
+        return currentConsumption;
     }
 
     private double getVesGruza() {
@@ -165,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
         double rasstVse = 0;
         if (!etRasstoyanieVse.getText().toString().isEmpty()) {
             rasstVse = Double.parseDouble(etRasstoyanieVse.getText().toString());
-        }else{
+        } else {
             etRasstoyanieVse.setText("0");
         }
         return rasstVse;
@@ -182,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
 
     private double getFuelPrice() {
 
-        double tekRashod = getCurrentConsumption();
+        double currentConsumption = getCurrentConsumption();
         double vesGruza = getVesGruza();
         double rasstVse = getRasstVse();
         double rasstVes = getRasstVes();
@@ -193,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
             if (rasstVse < rasstVes) {
                 showInfo("Общее расстояние больше, чем расстояние с грузом!");
             } else {
-                double vsegoPustoy = rasstVse * tekRashod / 100; //всего проехал и потралит литров
+                double vsegoPustoy = rasstVse * currentConsumption / 100; //всего проехал и потралит литров
                 double vsegoVes = 1.3 * vesGruza * rasstVes / 100;
 
                 double fuelPrice = Double.parseDouble(etFuelPrice.getText().toString()) * (vsegoPustoy + vsegoVes);
@@ -223,6 +226,25 @@ public class MainActivity extends AppCompatActivity {
 
     private void showSave(String text) {
         Toast.makeText(this, text, Toast.LENGTH_LONG).show();
+    }
+
+    //        imgBtnEdit3 Для окна с расчетами
+//        imgBtnEdit3.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//            }
+//        });
+//        OR
+    public void startCalculationRes(View v) {
+
+        EditText fuelPrice = findViewById(R.id.etFuelPrice);
+        String etFuelPrice = fuelPrice.getText().toString();
+
+
+        Intent intent = new Intent(this, CalculationActivity.class);
+        intent.putExtra("FuelPrice", etFuelPrice);
+        startActivity(intent);
+
     }
 
 

@@ -235,24 +235,17 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, text, Toast.LENGTH_LONG).show();
     }
 
-    //        imgBtnEdit3 Для окна с расчетами
-//        imgBtnEdit3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//            }
-//        });
-//        OR
+
     public void startCalculationRes(View v) {
 
-        EditText fuelPrice = findViewById(R.id.etFuelPrice);
-        String etFuelPrice = fuelPrice.getText().toString();
-
-
         Intent intent = new Intent(this, CalculationActivity.class);
-//        intent.putExtra("FuelPrice", etFuelPrice);
 
-        String formula = formulaCurrentConsumption + formulaTotalDistance + formulaTonKm + " = " + formulaConsumptionForFormula; //складывается в одну большую формулу
+        String formula = formulaCurrentConsumption + formulaTotalDistance + formulaTonKm + " = " + formulaConsumptionForFormula+" л."; //складывается в одну большую формулу
         intent.putExtra("formula", formula);
+//        intent.putExtra("formulaCurrentConsumption", formulaCurrentConsumption);
+//        intent.putExtra("formulaTotalDistance", formulaTotalDistance);
+//        intent.putExtra("formulaTonKm", formulaTonKm);
+//        intent.putExtra("formulaConsumptionForFormula", formulaConsumptionForFormula);
         startActivity(intent);
 
     }

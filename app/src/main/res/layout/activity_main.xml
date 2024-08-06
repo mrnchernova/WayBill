@@ -270,14 +270,15 @@
                 android:layout_height="wrap_content"
                 android:text="л." />
 
-            <ImageView
-                android:id="@+id/imgBtnEdit1"
+            <ImageButton
+                android:id="@+id/imgBtnEdit3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="printCalculation"
+                android:onClick="startCalculationRes"
                 android:src="@android:drawable/ic_menu_edit"
-                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
+                tools:ignore="SpeakableTextPresentCheck"
                 tools:src="@android:drawable/ic_menu_edit" />
+
         </TableRow>
 
         <TableRow
@@ -309,6 +310,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@android:drawable/ic_menu_edit"
+                android:visibility="invisible"
                 tools:src="@android:drawable/ic_menu_edit" />
         </TableRow>
 
@@ -336,13 +338,14 @@
                 android:layout_height="wrap_content"
                 android:text="р." />
 
-            <ImageButton
-                android:id="@+id/imgBtnEdit3"
+            <ImageView
+                android:id="@+id/imgBtnEdit1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="startCalculationRes"
+                android:onClick="printCalculation"
                 android:src="@android:drawable/ic_menu_edit"
-                tools:ignore="SpeakableTextPresentCheck"
+                android:visibility="invisible"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
                 tools:src="@android:drawable/ic_menu_edit" />
         </TableRow>
 
